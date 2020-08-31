@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-row :gutter="20">
-      <el-col :lg="6" :md="8" :sm="24" :xl="5" :xs="24" style="margin-bottom: 10px">
+      <el-col :lg="8" :md="8" :sm="24" :xl="5" :xs="24" style="margin-bottom: 10px">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>个人信息</span>
@@ -21,45 +21,61 @@
             </div>
             <ul class="user-info">
               <li>
-                <div style="height: 100%">
-                  <svg-icon icon-class="login" />
-                  登录账号
-                  <div class="user-right">{{ user.username }}</div>
-                </div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="login" class="icon" />
+                    登录账号
+                  </el-col>
+                  <el-col span="12">{{ user.username }}</el-col>
+                </el-row>
               </li>
               <li>
-                <svg-icon icon-class="user1" />
-                用户昵称
-                <div class="user-right">{{ user.nickname }}</div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="user1" class="icon"  />
+                    用户昵称
+                  </el-col>
+                  <el-col span="12">{{ user.nickname }}</el-col>
+                </el-row>
               </li>
               <li>
-                <svg-icon icon-class="dept" />
-                所属部门
-                <div class="user-right"> {{ user.deptName }}</div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="dept" class="icon"/>
+                    所属部门
+                  </el-col>
+                  <el-col span="12"> {{ user.deptName }}</el-col>
+                </el-row>
               </li>
               <li>
-                <svg-icon icon-class="phone" />
-                手机号码
-                <div class="user-right">{{ user.phone }}</div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="phone" class="icon" />
+                  手机号码
+                  </el-col>
+                  <el-col span="12"> {{ user.phone }}</el-col>
+                </el-row>
               </li>
               <li>
-                <svg-icon icon-class="email" />
-                用户邮箱
-                <div class="user-right">{{ user.email }}</div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="email" class="icon" />
+                    用户邮箱
+                  </el-col>
+                  <el-col span="12">{{ user.email }}</el-col>
+                </el-row>
               </li>
               <li>
-                <svg-icon icon-class="anq" />
-                安全设置
-                <div class="user-right">
-                  <a @click="$refs.pass.dialog = true">修改密码</a>
-                  <a @click="$refs.email.dialog = true">修改邮箱</a>
-                </div>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="anq" class="icon" />
+                    安全设置
+                  </el-col>
+                  <el-col span="12">
+                    <a @click="$refs.pass.dialog = true">修改密码</a>
+                    <a @click="$refs.email.dialog = true">修改邮箱</a>
+                  </el-col>
+                </el-row>
               </li>
             </ul>
           </div>
         </el-card>
       </el-col>
-      <el-col :lg="18" :md="16" :sm="24" :xl="19" :xs="24">
+      <el-col :lg="16" :md="16" :sm="24" :xl="19" :xs="24">
         <!--    用户资料    -->
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -89,7 +105,7 @@
               </el-form>
             </el-tab-pane>
             <!--    操作日志    -->
-            <el-tab-pane label="操作日志" name="second">
+            <el-tab-pane label="操作日志" v-show="" name="second">
               <el-table v-loading="loading" :data="data" style="width: 100%;">
                 <el-table-column label="行为">
                   <template slot-scope="scope">
@@ -268,14 +284,13 @@ export default {
       border-bottom: 1px solid #F0F3F4;
       padding: 11px 0;
       font-size: 13px;
-    }
-
-    .user-right {
-      float: right;
-
       a {
         color: #317EF3;
       }
     }
+
+  }
+  .icon{
+    padding-right: 5px
   }
 </style>

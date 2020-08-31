@@ -115,9 +115,9 @@ export const constantRouterMap = [
     children: [
       {
         path: '/myData',
-        meta: { showHeader: true },
-        component: (resolve) => require(['@/views/VirtualWeb/personal/myData'], resolve),
-        hidden: true
+        meta: { showHeader: true},
+        component: (resolve) => require(['@/views/sys/user/center'], resolve),
+        name: '个人中心',
       },
       {
         path: '/memberCenter',
