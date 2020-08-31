@@ -2,15 +2,19 @@
   <div id="app">
     <my-header></my-header>
     <div id="v-content" v-bind:style="{minHeight: Height+'px'}"><router-view /></div>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 import myHeader from '@/components/VirtualWeb/header'
+import myFooter from '@/components/VirtualWeb/footer'
+
 export default {
   name: 'App',
   components: {
-    myHeader
+    myHeader,
+    myFooter
   },
   data() {
     return {
