@@ -22,7 +22,7 @@ const whiteList = [
   '/contactUs',
 
   '/personal',
-  '/myData',
+  // '/myData',
   '/memberCenter',
   '/myOrder',
   '/myReceipt',

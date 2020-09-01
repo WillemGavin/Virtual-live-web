@@ -261,11 +261,8 @@ export default {
 
   }
   .block{
-    min-width: 1200px;
+    width: 100%;
     margin: auto;
-    .banner{
-      height:100%;
-    }
   }
 
 

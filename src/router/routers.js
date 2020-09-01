@@ -7,7 +7,7 @@ Vue.use(Router)
 export const constantRouterMap = [
   {
     path: '/login',
-    meta: { title: '登录', noCache: true },
+    meta: { title: '登录', noCache: true},
     component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
@@ -109,7 +109,7 @@ export const constantRouterMap = [
   },
   {
     path: '/personal',
-    meta: { title: '个人中心', noCache: true, showHeader: true },
+    meta: { title: '个人中心', showHeader: true },
     component: (resolve) => require(['@/views/VirtualWeb/personal/personal'], resolve),
     hidden: true,
     children: [
@@ -117,7 +117,6 @@ export const constantRouterMap = [
         path: '/myData',
         meta: { showHeader: true},
         component: (resolve) => require(['@/views/sys/user/center'], resolve),
-        name: '个人中心',
       },
       {
         path: '/memberCenter',

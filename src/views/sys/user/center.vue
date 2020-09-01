@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container personal-container">
     <el-row :gutter="20">
       <el-col :lg="8" :md="8" :sm="24" :xl="5" :xs="24" style="margin-bottom: 10px">
         <el-card class="box-card">
@@ -86,10 +86,10 @@
                 :rules="rules"
                 label-width="65px"
                 size="small"
-                style="margin-top: 10px;"
+                style="margin-top: 10px;text-align: left"
               >
                 <el-form-item label="昵称" prop="nickName">
-                  <el-input v-model="form.nickname" style="width: 35%" />
+                  <el-input v-model="form.nickname" style="width: 35%;" />
                   <span style="color: #C0C0C0;margin-left: 10px;">用户昵称不作为登录使用</span>
                 </el-form-item>
                 <el-form-item label="手机号" prop="phone">
@@ -99,13 +99,13 @@
                 <el-form-item label="备注" prop="description">
                   <el-input v-model="form.description" style="width: 35%;" type="textarea" />
                 </el-form-item>
-                <el-form-item label="">
-                  <el-button :loading="saveLoading" size="mini" type="primary" @click="doSubmit">保存配置</el-button>
+                <el-form-item style="text-align: center">
+                  <el-button :loading="saveLoading" size="mini" style="width: 90px; border: 1px solid #ff5000;color: #fff;background-color: #ff5000;" @click="doSubmit">保存配置</el-button>
                 </el-form-item>
               </el-form>
             </el-tab-pane>
             <!--    操作日志    -->
-            <el-tab-pane label="操作日志" v-show="" name="second">
+            <el-tab-pane label="操作日志" v-show="showLog" name="second">
               <el-table v-loading="loading" :data="data" style="width: 100%;">
                 <el-table-column label="行为">
                   <template slot-scope="scope">
@@ -187,9 +187,10 @@ export default {
     }
     return {
       show: false,
+      showLog: false,
       Avatar: Avatar,
       activeName: 'first',
-      saveLoading: false,
+      saveLoading: true,
       headers: {
         'X-XSRF-TOKEN': getXsrfToken()
       },
@@ -214,6 +215,11 @@ export default {
   },
   created() {
     this.form = { id: this.user.id, nickname: this.user.nickname, description: this.user.description, phone: this.user.phone }
+    //是否显示日志
+    if(this.user.roleNames === "企业用户" || this.user.roleNames === "个人用户" ||this.user.roleNames === "企业管理员"){
+      this.showLog = false;
+
+    }
     store.dispatch('GetUser').then(() => {
     })
   },
@@ -261,6 +267,10 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
+  .personal-container{
+    width: 900px;
+    margin: auto;
+  }
   .avatar-uploader-icon {
     font-size: 28px;
     width: 120px;

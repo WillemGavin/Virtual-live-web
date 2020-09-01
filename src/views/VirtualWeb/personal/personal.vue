@@ -41,7 +41,7 @@
   </div>
 
 </div>
-  
+
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
   name: "personal",
   data(){
     return {
-      
+
     }
   },
   methods: {
@@ -66,12 +66,18 @@ export default {
 <style lang='scss' scoped>
 @import '@/common/style.scss';
 .personal{
-  background-color:rgb(245,247,249);
+
+  width: 1200px;
+  min-height: 600px;
+  margin: auto;
+  margin-bottom: 30px;
   box-sizing: border-box;
   display:flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);
+
   // .headBar{
   //   width:100%;
   //   height:100px;
@@ -127,5 +133,5 @@ export default {
  }
 }
 
-  
+
 </style>

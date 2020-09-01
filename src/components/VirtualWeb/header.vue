@@ -22,7 +22,9 @@
             <el-button style="width: 90px;background-color: #ff5000;color: white" @click="makeChange">登录</el-button>
           </div>
           <div class="sign" index="sign_up">
-            <el-button @click='$router.replace("/signupPage")' style="color: #909399" type="text">注册</el-button>
+            <el-button @click='$router.replace("/signupPage")' style="color: #909399" type="text">
+              <a class="sign-up">注册</a>
+            </el-button>
           </div>
         </div>
       </template>
@@ -38,7 +40,7 @@
             <el-menu-item index="myOrder">我的订单</el-menu-item>
             <el-menu-item index="myReceipt">我的发票</el-menu-item>
             <el-menu-item index="security">安全中心</el-menu-item>
-            <el-menu-item @click='logOut'>退出登录</el-menu-item>
+            <el-menu-item @click="open">退出登录</el-menu-item>
           </el-submenu>
         </div>
       </template>
@@ -59,13 +61,25 @@ export default {
   methods: {
     goTo(url){
       //带参数跳转
-      this.$router.push({path:url,query:{setid:123456}});
+      this.$router.push({path:url});
     },
     makeChange(){
-      this.$router.push('pass')
+      this.$router.push('login')
     },
-    logOut(){
-      this.$store.commit('Login',0)
+    open() {
+      this.$confirm('确定注销并退出系统吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        cancelButtonClass: 'cancel-btn',
+        type: 'warning'
+      }).then(() => {
+        this.logout()
+      })
+    },
+    logout() {
+      this.$store.dispatch('LogOut').then(() => {
+        this.$router.push({path:'/'});
+      })
     }
 
   },
@@ -85,7 +99,7 @@ export default {
   position: sticky;
   background-color: white;
   top: 0;
-  z-index: 9999;
+  z-index: 10;
   #banner_container{
     max-width: 1200px;
     min-width: 700px;
@@ -103,6 +117,9 @@ export default {
 .sign{
   float: right;
   margin: 10px;
+}
+.sign-up:hover{
+  color: #ff5000;
 }
 
 .personal{
@@ -140,8 +157,10 @@ export default {
     min-width:93px !important;
 
   }
-
-
+}
+.cancel-btn{
+  color: #ff5000 !important;
+  background-color: rgba(255, 80, 0, 0.1) !important;
 }
 
 </style>

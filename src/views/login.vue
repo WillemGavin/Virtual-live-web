@@ -9,7 +9,7 @@
       label-width="0px"
     >
       <h3 class="title">
-        Albedo 快速开发框架
+        欢迎来到虚拟工坊
       </h3>
 
       <el-form-item prop="username">
@@ -52,14 +52,14 @@
       <el-form-item>
         <el-button
           :loading="loading"
-          type="primary"
+          style="width: 100px; border: 1px solid #ff5000;color: #fff;background-color: #ff5000;"
           @click.native.prevent="handleLogin"
         >
           <span v-if="!loading">登 录</span>
           <span v-else>登 录 中...</span>
         </el-button>
         <el-button
-          type="primary"
+          style="width: 100px;border: 1px solid #ff5000;color: #ff5000;background-color: #fff;"
           @click="centerDialogVisible=true"
         >
           <span>注 册</span>
@@ -245,7 +245,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #f8f8f9;
+  //background-color: #f8f8f9;
   /*请更换为自己的地址，不保证该地址不被删除*/
   /*background-image:url(https://aurora-1255840532.cos.ap-chengdu.myqcloud.com/bg.jpeg);*/
   /*background-size: cover;*/
@@ -261,8 +261,9 @@ export default {
   border-radius: 6px;
   background: #ffffff;
   width: 385px;
+  margin-top: 30px;
   padding: 25px 25px 5px 25px;
-  box-shadow: -4px 5px 10px rgba(0, 0, 0, 0.4);
+  box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);
 
   .el-input {
     height: 38px;
