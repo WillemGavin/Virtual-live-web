@@ -108,16 +108,63 @@
 </template>
 <script>
 export default {
-    methods:{
-       submit(){
-            this.$router.replace('/')
-            this.$store.commit('next')
-        },
-        back(){
-            this.$router.replace('newProduct')
-            this.$store.commit('back')
+  data(){
+      return{
+        // 隐藏加号
+        fileList:this.item.profileList,
+        uploadDisabled:false,
+        dialogVisible: false,
+        addPicture:!this.dialogVisible,
+        disabled: false,
+        dialogImageUrl:'',
+      }
+  },
+  methods:{
+    submit(){
+        this.$router.replace('/')
+        this.$store.commit('SUBMIT_DATA')
+    },
+    back(){
+        this.$router.replace('newProduct')
+        this.$store.commit('BACK')
+    },
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!');
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+      }
+      return isJPG && isLt2M;
+    },
+    handleChange(file,fileList){
+      this.fileList.push(file)
+      if(fileList.length >= 1){
+        this.uploadDisabled = true;
+      }
+    },
+      handleRemove(file) {
+          console.log("handleRemove")
+      this.fileList.filter((item,index)=>{
+        if (file === item){
+          this.fileList.splice(index,1)
         }
-    }
+      })
+      
+      this.uploadDisabled = false
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+  
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -139,7 +186,8 @@ export default {
         padding:20px 0;
         .addLogo{
             width:500px;
-            height:200px;
+            min-height:200px;
+            padding-bottom:20px;
             background-color: rgb(245,247,250);
             .barTitle{
                 width:100%;
@@ -154,7 +202,8 @@ export default {
         }
         .addmark{
             width:500px;
-            height:200px;
+            min-height:200px;
+            padding-bottom:20px;
             background-color: rgb(245,247,250);
             display:flex;
             flex-direction: column;

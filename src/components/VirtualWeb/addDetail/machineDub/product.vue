@@ -5,8 +5,9 @@
     :on-success="handleAvatarSuccess"
     :on-change="handleChange"
     :on-remove="handleRemove"
-    action="#"
+    :file-list="fileList"
     limit=1
+    action="#"
     list-type="picture-card"
     :auto-upload="false">
       <i slot="default" class="el-icon-plus"></i>
@@ -43,12 +44,12 @@
         <img width="100%" :src="dialogImageUrl" alt="">
       </el-dialog>
 
-      <el-form ref="productForm" :model="productForm" label-width="80px">
+      <el-form :model="productData" label-width="80px">
         <el-form-item label="商品名称">
-          <el-input type="text" v-model="productForm.proTitle"></el-input>
+          <el-input type="text" v-model="productData.proTitle" @input="commitData"></el-input>
         </el-form-item>
         <el-form-item label="商品描述">
-          <el-input type="textarea" v-model="productForm.proDescrition"></el-input>
+          <el-input type="textarea" v-model="productData.proDescription"  @input="commitData"></el-input>
         </el-form-item>
       </el-form>
     </div>
@@ -56,50 +57,72 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-          // 隐藏加号
-          uploadDisabled:false,
-          dialogVisible: false,
-          addPicture:!this.dialogVisible,
-          disabled: false,
-          productForm:{
-            proTitle:'',
-            proDescrition:''
-          }
+  props:['item'],
+  data(){
+      return{
+        // 隐藏加号
+        fileList:this.item.profileList,
+        uploadDisabled:false,
+        dialogVisible: false,
+        addPicture:!this.dialogVisible,
+        disabled: false,
+        dialogImageUrl:'',
+        productData:{
+          proTitle:this.item.proTitle,
+          proDescription:this.item.proDescription,
+          profileList:this.item.profileList
         }
-    },
-    methods:{
-      handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-      },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-      },
-      handleChange(file,fileList){
-        if(fileList.length >= 1){
-          this.uploadDisabled = true;
-        }
-      },
-       handleRemove(file) {
-        console.log(file);
-        this.fileList
-        this.uploadDisabled = false
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
       }
+  },
+  methods:{
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!');
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+      }
+      return isJPG && isLt2M;
+    },
+    handleChange(file,fileList){
+      this.fileList.push(file)
+      if(fileList.length >= 1){
+        this.uploadDisabled = true;
+      }
+      this.productData.profileList=this.fileList
+      this.commitData()
+    },
+      handleRemove(file) {
+        console.log("handleremove")
+      this.fileList.filter((item,index)=>{
+        if (file === item){
+          this.fileList.splice(index,1)
+          this.productData.profileList=this.fileList
+        }
+      })
+      
+      this.uploadDisabled = false
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    commitData(){
+      // 是否要修改
+      this.item.ifModify=1
+      this.item.profileList=this.productData.profileList
+      this.item.proTitle=this.productData.proTitle
+      this.item.proDescription=this.productData.proDescription
+       // 点击保存将本次创建的商品信息传到父组件中
+      this.$emit('saveData',this.item)
     }
+  }
 }
 </script>
 <style lang="scss" scoped>
