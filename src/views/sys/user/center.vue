@@ -36,7 +36,7 @@
                   <el-col span="12">{{ user.nickname }}</el-col>
                 </el-row>
               </li>
-              <li>
+              <li v-show="showLog">
                 <el-row>
                   <el-col span="12"><svg-icon icon-class="dept" class="icon"/>
                     所属部门
@@ -105,7 +105,7 @@
               </el-form>
             </el-tab-pane>
             <!--    操作日志    -->
-            <el-tab-pane label="操作日志" v-show="showLog" name="second">
+            <el-tab-pane v-if="showLog" label="操作日志" name="second">
               <el-table v-loading="loading" :data="data" style="width: 100%;">
                 <el-table-column label="行为">
                   <template slot-scope="scope">
@@ -187,10 +187,10 @@ export default {
     }
     return {
       show: false,
-      showLog: false,
+      showLog: true,
       Avatar: Avatar,
       activeName: 'first',
-      saveLoading: true,
+      saveLoading: false,
       headers: {
         'X-XSRF-TOKEN': getXsrfToken()
       },
@@ -209,8 +209,6 @@ export default {
   computed: {
     ...mapGetters([
       'user',
-      'fileUploadApi',
-      'baseApi'
     ])
   },
   created() {
@@ -218,7 +216,6 @@ export default {
     //是否显示日志
     if(this.user.roleNames === "企业用户" || this.user.roleNames === "个人用户" ||this.user.roleNames === "企业管理员"){
       this.showLog = false;
-
     }
     store.dispatch('GetUser').then(() => {
     })

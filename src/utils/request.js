@@ -88,7 +88,7 @@ service.interceptors.response.use(
           message,
           '系统提示',
           {
-            confirmButtonText: '重新登录',
+            // confirmButtonText: '重新登录',
             cancelButtonText: '取消',
             type: 'warning'
           }

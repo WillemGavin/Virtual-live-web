@@ -16,7 +16,7 @@
             <i class='el-icon-user'></i>
             <span slot="title">个人资料</span>
           </el-menu-item>
-          <el-menu-item index="memberCenter">
+          <el-menu-item index="memberCenter" v-show="showMember">
             <i class='el-icon-coin'></i>
             <span slot="title">会员中心</span>
           </el-menu-item>
@@ -28,10 +28,10 @@
             <i class='el-icon-tickets'></i>
             <span slot="title">我的发票</span>
           </el-menu-item>
-          <el-menu-item index="security">
-            <i class='el-icon-first-aid-kit'></i>
-            <span slot="title">安全中心</span>
-          </el-menu-item>
+<!--          <el-menu-item index="security">-->
+<!--            <i class='el-icon-first-aid-kit'></i>-->
+<!--            <span slot="title">安全中心</span>-->
+<!--          </el-menu-item>-->
         </el-menu>
       </el-col>
       <el-col :span="19" class='showText'>
@@ -45,11 +45,25 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
+
   name: "personal",
   data(){
     return {
-
+      showMember : true,
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'user',
+    ])
+  },
+  created() {
+    // console.log(this.user);
+    if(this.user.roleNames === "个人用户")
+    {
+      this.showMember = false;
     }
   },
   methods: {

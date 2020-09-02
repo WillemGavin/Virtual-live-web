@@ -146,7 +146,7 @@
             <el-button type="primary" @click="submitForm('form')">提交咨询</el-button>
           </el-form-item>
         </el-form>
-        <el-link :underline="false" href=''>了解更多 ></el-link>
+        <el-link :underline="false" @click="goTo('/proService')"  class="learn-more"> >> 了解更多</el-link>
       </div>
 
     </div>
@@ -224,7 +224,9 @@ export default {
       this.form.name=''
       this.form.tel=''
     },
-
+    goTo(path){
+      this.$router.push({path: path});
+    }
   }
 
 }
@@ -425,5 +427,8 @@ export default {
 
   }
 
+}
+.learn-more:hover{
+  color: #ff5000;
 }
 </style>

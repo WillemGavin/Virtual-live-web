@@ -52,7 +52,7 @@
       <el-form-item>
         <el-button
           :loading="loading"
-          style="width: 100px; border: 1px solid #ff5000;color: #fff;background-color: #ff5000;"
+          type="primary" style="width: 100px"
           @click.native.prevent="handleLogin"
         >
           <span v-if="!loading">登 录</span>
@@ -71,7 +71,7 @@
     <el-dialog
       title="注册用户"
       :visible.sync="centerDialogVisible"
-      width="30%"
+      width="500px"
       center>
       <el-form ref="registerForm" :model="registerForm" label-width="80px" :rules="registerRules"
       >
@@ -103,11 +103,13 @@
           <el-input v-model="registerForm.phone" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item label="邀请码">
-          <el-input v-model="registerForm.invitationCode" placeholder="请输入邀请码"></el-input>
+          <el-input v-model="registerForm.invitationCode" placeholder="请输入邀请码（选填）"></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="handleRegister()">注 册</el-button>
-      <el-button @click="centerDialogVisible = false">取 消</el-button>
+      <div style="text-align: center">
+        <el-button type="primary" style="width: 100px;" @click="handleRegister()" ref="register">注 册</el-button>
+        <el-button style="width: 100px;" @click="centerDialogVisible = false">取 消</el-button>
+      </div>
     </el-dialog>
     <!--  底部  -->
     <div v-if="$store.state.settings.showFooter" id="el-login-footer">
@@ -167,8 +169,10 @@ export default {
       },
       registerRules: {
         username: [{required: true, trigger: 'blur', message: '用户名不能为空'}],
-        password: [{required: true, trigger: 'blur', message: '密码不能为空'}],
-        rePassword: [{required: true, trigger: 'blur', message: '密码不能为空'}, {validator: validateConfirmPass}],
+        password: [{required: true, trigger: 'blur', message: '密码不能为空'},
+          { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }],
+        rePassword: [{required: true, trigger: 'blur', message: '密码不能为空'},
+          {validator: validateConfirmPass}],
         // verifyCode: [{required: true, trigger: 'blur', message: '手机验证码不能为空'}]
       },
       loading: false,
@@ -184,7 +188,10 @@ export default {
     }
   },
   created() {
-    this.refreshCode()
+    this.refreshCode();
+    if(this.$route.query.func === 'toRegister'){
+      this.centerDialogVisible = true
+    }
   },
   methods: {
     validateConfirmPass: (rule, value, callback) => {
@@ -226,11 +233,15 @@ export default {
     handleRegister() {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
+          //加载动画
+          this.$refs.register.loading = true;
           this.$store.dispatch('Register', this.registerForm).then(() => {
+            this.$refs.register.loading = false;
             console.log(this.registerForm);
             // this.$router.push({path: this.redirect || '/'})
             this.centerDialogVisible = false;
           }).catch((e) => {
+            this.$refs.register.loading = false;
           })
         }
       });
