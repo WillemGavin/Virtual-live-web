@@ -139,7 +139,8 @@ export default {
         padding:20px 0;
         .addLogo{
             width:500px;
-            height:200px;
+            min-height:200px;
+            padding-bottom:20px;
             background-color: rgb(245,247,250);
             .barTitle{
                 width:100%;
@@ -154,11 +155,9 @@ export default {
         }
         .addmark{
             width:500px;
-            height:200px;
+            min-height:200px;
+            padding-bottom:20px;
             background-color: rgb(245,247,250);
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
             .barTitle{
                 width:100%;
                 padding:10px;

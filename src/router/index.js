@@ -31,13 +31,16 @@ const whiteList = [
   '/addOrder',
   '/addDetail',
   '/machineDub',
-  '/proDetail',
   '/newProduct',
   '/addMark',
   '/selfDub',
   '/dubDetail',
   '/uploadDub',
   '/selfMark',
+  '/manualDub',
+  '/selectAttri',
+  '/paymentPage',
+
 
 ]// no redirect whitelist
 

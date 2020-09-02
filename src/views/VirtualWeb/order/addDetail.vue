@@ -24,7 +24,7 @@
       <div class="setDubway">
           <el-row :gutter="12">
             <el-col :span="5">
-              <div class="cardBox" @click='goTo("newProduct")'>
+              <div class="cardBox" @click='goTo("uploadDub")'>
                 <el-card shadow='hover'>
                   <div slot='header' class='clearfix'>
                     <i class='el-icon-video-camera'></i>
@@ -35,7 +35,7 @@
               </div>
             </el-col>
              <el-col :span="5">
-               <div class="cardBox" @click='goTo("uploadDub")'>
+               <div class="cardBox" @click='goTo("selectAttri")'>
                 <el-card shadow='hover' >
                   <div slot='header' class='clearfix'>
                     <i class='el-icon-magic-stick'></i>

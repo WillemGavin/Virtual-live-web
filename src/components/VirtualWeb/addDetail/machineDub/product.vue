@@ -6,7 +6,8 @@
     :on-change="handleChange"
     :on-remove="handleRemove"
     :file-list="fileList"
-    limit=1
+    :limit="1"
+    :on-exceed="exceed"
     action="#"
     list-type="picture-card"
     :auto-upload="false">
@@ -99,7 +100,6 @@ export default {
       this.commitData()
     },
       handleRemove(file) {
-        console.log("handleremove")
       this.fileList.filter((item,index)=>{
         if (file === item){
           this.fileList.splice(index,1)
@@ -108,6 +108,9 @@ export default {
       })
       
       this.uploadDisabled = false
+    },
+     exceed(){
+          this.$message.error('每个商品最多上传1张图片哦！')
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;

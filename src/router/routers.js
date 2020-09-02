@@ -168,7 +168,7 @@ export const constantRouterMap = [
       {
         path: '/proDetail',
         meta: { showHeader: true },
-        component: (resolve) => require(['@/components/VirtualWeb/addDetail/machineDub/proDetail'], resolve),
+        component: (resolve) => require(['@/components/VirtualWeb/addDetail/machineDub/dubDetail'], resolve),
         hidden: true,
         children:[
           {
@@ -197,7 +197,7 @@ export const constantRouterMap = [
       {
         path:'/dubDetail',
         meta: { showHeader: true },
-        component: (resolve) => require(['@/components/VirtualWeb/addDetail/selfDub/DubDetail'], resolve),
+        component: (resolve) => require(['@/components/VirtualWeb/addDetail/selfDub/dubDetail'], resolve),
         hidden: true,
         children:[
           {
@@ -210,6 +210,41 @@ export const constantRouterMap = [
             path:'/selfMark',
             meta: { showHeader: true },
             component: (resolve) => require(['@/components/VirtualWeb/addDetail/selfDub/addMark'], resolve),
+            hidden: true,
+          }
+        ]
+      }
+
+    ]
+  },
+  {
+    path:'/manualDub',
+    meta: { showHeader: true },
+    component: (resolve) => require(['@/components/VirtualWeb/addDetail/manualDub/manualDub'], resolve),
+    hidden: true,
+    children:[
+      {
+        path:'/dubDetail',
+        meta: { showHeader: true },
+        component: (resolve) => require(['@/components/VirtualWeb/addDetail/manualDub/dubDetail'], resolve),
+        hidden: true,
+        children:[
+          {
+            path:'/selectAttri',
+            meta: { showHeader: true },
+            component: (resolve) => require(['@/components/VirtualWeb/addDetail/manualDub/selectAttri'], resolve),
+            hidden: true,
+          },
+          {
+            path:'/paymentPage',
+            meta: { showHeader: true },
+            component: (resolve) => require(['@/components/VirtualWeb/addDetail/manualDub/paymentPage'], resolve),
+            hidden: true,
+          },
+          {
+            path:'/addMark',
+            meta: { showHeader: true },
+            component: (resolve) => require(['@/components/VirtualWeb/addDetail/manualDub/addMark'], resolve),
             hidden: true,
           }
         ]

@@ -1,12 +1,12 @@
 <template>
-<div class='proDetail'>
+<div class='dubDetail'>
   <router-view></router-view>
 </div>
 </template>
 
 <style scoped lang='scss'>
 
-.proDetail{
+.dubDetail{
   padding-bottom:20px;
   width:100%;
   height:100%;
