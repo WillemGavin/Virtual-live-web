@@ -72,7 +72,6 @@
 import product from './product'
 import scriptItem from './scriptItem'
 import draggable from "vuedraggable"
-
 let anchorName='W';
 let touristName='LH';
 let followerName='LH';

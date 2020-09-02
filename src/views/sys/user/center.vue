@@ -1,7 +1,13 @@
 <template>
+<<<<<<< HEAD
   <div class="app-container">
     <el-row :gutter="20">
       <el-col :lg="6" :md="8" :sm="24" :xl="5" :xs="24" style="margin-bottom: 10px">
+=======
+  <div class="app-container personal-container">
+    <el-row :gutter="20">
+      <el-col :lg="8" :md="8" :sm="24" :xl="5" :xs="24" style="margin-bottom: 10px">
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>个人信息</span>
@@ -21,6 +27,7 @@
             </div>
             <ul class="user-info">
               <li>
+<<<<<<< HEAD
                 <div style="height: 100%">
                   <svg-icon icon-class="login" />
                   登录账号
@@ -54,12 +61,67 @@
                   <a @click="$refs.pass.dialog = true">修改密码</a>
                   <a @click="$refs.email.dialog = true">修改邮箱</a>
                 </div>
+=======
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="login" class="icon" />
+                    登录账号
+                  </el-col>
+                  <el-col span="12">{{ user.username }}</el-col>
+                </el-row>
+              </li>
+              <li>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="user1" class="icon"  />
+                    用户昵称
+                  </el-col>
+                  <el-col span="12">{{ user.nickname }}</el-col>
+                </el-row>
+              </li>
+              <li>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="dept" class="icon"/>
+                    所属部门
+                  </el-col>
+                  <el-col span="12"> {{ user.deptName }}</el-col>
+                </el-row>
+              </li>
+              <li>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="phone" class="icon" />
+                  手机号码
+                  </el-col>
+                  <el-col span="12"> {{ user.phone }}</el-col>
+                </el-row>
+              </li>
+              <li>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="email" class="icon" />
+                    用户邮箱
+                  </el-col>
+                  <el-col span="12">{{ user.email }}</el-col>
+                </el-row>
+              </li>
+              <li>
+                <el-row>
+                  <el-col span="12"><svg-icon icon-class="anq" class="icon" />
+                    安全设置
+                  </el-col>
+                  <el-col span="12">
+                    <a @click="$refs.pass.dialog = true">修改密码</a>
+                    <a @click="$refs.email.dialog = true">修改邮箱</a>
+                  </el-col>
+                </el-row>
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
               </li>
             </ul>
           </div>
         </el-card>
       </el-col>
+<<<<<<< HEAD
       <el-col :lg="18" :md="16" :sm="24" :xl="19" :xs="24">
+=======
+      <el-col :lg="16" :md="16" :sm="24" :xl="19" :xs="24">
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
         <!--    用户资料    -->
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -70,10 +132,17 @@
                 :rules="rules"
                 label-width="65px"
                 size="small"
+<<<<<<< HEAD
                 style="margin-top: 10px;"
               >
                 <el-form-item label="昵称" prop="nickName">
                   <el-input v-model="form.nickname" style="width: 35%" />
+=======
+                style="margin-top: 10px;text-align: left"
+              >
+                <el-form-item label="昵称" prop="nickName">
+                  <el-input v-model="form.nickname" style="width: 35%;" />
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
                   <span style="color: #C0C0C0;margin-left: 10px;">用户昵称不作为登录使用</span>
                 </el-form-item>
                 <el-form-item label="手机号" prop="phone">
@@ -83,13 +152,22 @@
                 <el-form-item label="备注" prop="description">
                   <el-input v-model="form.description" style="width: 35%;" type="textarea" />
                 </el-form-item>
+<<<<<<< HEAD
                 <el-form-item label="">
                   <el-button :loading="saveLoading" size="mini" type="primary" @click="doSubmit">保存配置</el-button>
+=======
+                <el-form-item style="text-align: center">
+                  <el-button :loading="saveLoading" size="mini" style="width: 90px; border: 1px solid #ff5000;color: #fff;background-color: #ff5000;" @click="doSubmit">保存配置</el-button>
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
                 </el-form-item>
               </el-form>
             </el-tab-pane>
             <!--    操作日志    -->
+<<<<<<< HEAD
             <el-tab-pane label="操作日志" name="second">
+=======
+            <el-tab-pane label="操作日志" v-show="showLog" name="second">
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
               <el-table v-loading="loading" :data="data" style="width: 100%;">
                 <el-table-column label="行为">
                   <template slot-scope="scope">
@@ -171,9 +249,16 @@ export default {
     }
     return {
       show: false,
+<<<<<<< HEAD
       Avatar: Avatar,
       activeName: 'first',
       saveLoading: false,
+=======
+      showLog: false,
+      Avatar: Avatar,
+      activeName: 'first',
+      saveLoading: true,
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
       headers: {
         'X-XSRF-TOKEN': getXsrfToken()
       },
@@ -198,6 +283,14 @@ export default {
   },
   created() {
     this.form = { id: this.user.id, nickname: this.user.nickname, description: this.user.description, phone: this.user.phone }
+<<<<<<< HEAD
+=======
+    //是否显示日志
+    if(this.user.roleNames === "企业用户" || this.user.roleNames === "个人用户" ||this.user.roleNames === "企业管理员"){
+      this.showLog = false;
+
+    }
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
     store.dispatch('GetUser').then(() => {
     })
   },
@@ -245,6 +338,13 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
+<<<<<<< HEAD
+=======
+  .personal-container{
+    width: 900px;
+    margin: auto;
+  }
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
   .avatar-uploader-icon {
     font-size: 28px;
     width: 120px;
@@ -268,14 +368,24 @@ export default {
       border-bottom: 1px solid #F0F3F4;
       padding: 11px 0;
       font-size: 13px;
+<<<<<<< HEAD
     }
 
     .user-right {
       float: right;
 
+=======
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
       a {
         color: #317EF3;
       }
     }
+<<<<<<< HEAD
+=======
+
+  }
+  .icon{
+    padding-right: 5px
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
   }
 </style>

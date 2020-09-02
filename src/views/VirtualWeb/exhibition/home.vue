@@ -261,11 +261,16 @@ export default {
 
   }
   .block{
+<<<<<<< HEAD
     min-width: 1200px;
     margin: auto;
     .banner{
       height:100%;
     }
+=======
+    width: 100%;
+    margin: auto;
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
   }
 
 

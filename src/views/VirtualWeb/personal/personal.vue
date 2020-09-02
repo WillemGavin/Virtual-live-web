@@ -41,7 +41,11 @@
   </div>
 
 </div>
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
 </template>
 
 <script>
@@ -49,7 +53,11 @@ export default {
   name: "personal",
   data(){
     return {
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
     }
   },
   methods: {
@@ -66,12 +74,25 @@ export default {
 <style lang='scss' scoped>
 @import '@/common/style.scss';
 .personal{
+<<<<<<< HEAD
   background-color:rgb(245,247,249);
+=======
+
+  width: 1200px;
+  min-height: 600px;
+  margin: auto;
+  margin-bottom: 30px;
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
   box-sizing: border-box;
   display:flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
+=======
+  box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);
+
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
   // .headBar{
   //   width:100%;
   //   height:100px;
@@ -127,5 +148,9 @@ export default {
  }
 }
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
 </style>

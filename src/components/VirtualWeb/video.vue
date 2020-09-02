@@ -61,9 +61,9 @@ export default {
   margin-bottom: 150px;
   position: relative;
   display: inline-block;
-  width: 80%;
+  width: 100%;
   border: 1px solid transparent;
-  overflow: hidden;
+  //overflow: hidden;
   margin-right: 4px;
 
   .tipsText {

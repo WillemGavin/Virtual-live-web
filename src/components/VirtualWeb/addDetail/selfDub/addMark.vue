@@ -139,8 +139,12 @@ export default {
         padding:20px 0;
         .addLogo{
             width:500px;
+<<<<<<< HEAD
             min-height:200px;
             padding-bottom:20px;
+=======
+            height:200px;
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
             background-color: rgb(245,247,250);
             .barTitle{
                 width:100%;
@@ -155,9 +159,17 @@ export default {
         }
         .addmark{
             width:500px;
+<<<<<<< HEAD
             min-height:200px;
             padding-bottom:20px;
             background-color: rgb(245,247,250);
+=======
+            height:200px;
+            background-color: rgb(245,247,250);
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+>>>>>>> f25931a03284d65882e8cfa9176a9c3795f80f4c
             .barTitle{
                 width:100%;
                 padding:10px;
